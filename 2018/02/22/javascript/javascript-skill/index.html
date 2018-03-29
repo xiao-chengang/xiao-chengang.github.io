@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.4" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="javascript,tips," />
+
+
+<meta name="description" content="JavaScript 开发小技巧三目运算符下面是一个很好的例子，将一个完整的 if 语句，简写为一行代码。12345678const x=20;let answer  if (x&amp;gt;10)&amp;#123;    answer=&quot;greater than 10&quot;&amp;#125;else&amp;#123;    answer=&quot;less than 10&quot;&amp;#125; 可以简写为:1let answer =x&amp;g">
+<meta name="keywords" content="javascript,tips">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 开发小技巧">
+<meta property="og:url" content="http://xiao-chengang.github.io/2018/02/22/javascript/javascript-skill/index.html">
+<meta property="og:site_name" content="码农的自我修养">
+<meta property="og:description" content="JavaScript 开发小技巧三目运算符下面是一个很好的例子，将一个完整的 if 语句，简写为一行代码。12345678const x=20;let answer  if (x&amp;gt;10)&amp;#123;    answer=&quot;greater than 10&quot;&amp;#125;else&amp;#123;    answer=&quot;less than 10&quot;&amp;#125; 可以简写为:1let answer =x&amp;g">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-23T14:29:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 开发小技巧">
+<meta name="twitter:description" content="JavaScript 开发小技巧三目运算符下面是一个很好的例子，将一个完整的 if 语句，简写为一行代码。12345678const x=20;let answer  if (x&amp;gt;10)&amp;#123;    answer=&quot;greater than 10&quot;&amp;#125;else&amp;#123;    answer=&quot;less than 10&quot;&amp;#125; 可以简写为:1let answer =x&amp;g">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="码农的自我修养" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://xiao-chengang.github.io/2018/02/22/javascript/javascript-skill/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>JavaScript 开发小技巧 | 码农的自我修养</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">码农的自我修养</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiao-chengang.github.io/2018/02/22/javascript/javascript-skill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="肖晨刚">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农的自我修养">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript 开发小技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T16:04:05+08:00">2018-02-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript-开发小技巧"><a href="#JavaScript-开发小技巧" class="headerlink" title="JavaScript 开发小技巧"></a>JavaScript 开发小技巧</h1><h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><p>下面是一个很好的例子，将一个完整的 if 语句，简写为一行代码。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">let</span> answer  </span><br><span class="line"><span class="keyword">if</span> (x&gt;<span class="number">10</span>)&#123;</span><br><span class="line">    answer=<span class="string">"greater than 10"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    answer=<span class="string">"less than 10"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以简写为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> answer =x&gt;<span class="number">10</span>?<span class="string">"greater than 10"</span>:<span class="string">"less than 10"</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><p>当使用纯JavaScript（不依赖外部库，如 jQuery 或lodash）时，下面的简写会非常有用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; array.length ;i++)</span><br></pre></td></tr></table></figure></p>
+<p>可以简写为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> array)</span><br></pre></td></tr></table></figure></p>
+<p>下面是遍历数组forEach 的简写示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>].forEach(<span class="function">(<span class="params">element,index,array</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`array[<span class="subst">$&#123;index&#125;</span>]=<span class="subst">$&#123;element&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br><span class="line">logs:</span><br><span class="line">array[<span class="number">0</span>]=<span class="number">11</span></span><br><span class="line">array[<span class="number">1</span>]=<span class="number">22</span></span><br><span class="line">array[<span class="number">2</span>]=<span class="number">33</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><p>在函数开始之前，对变量进行赋值是一种很好的习惯。在申明多个变量时：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x;</span><br><span class="line"><span class="keyword">let</span> y;</span><br><span class="line"><span class="keyword">let</span> z=<span class="number">3</span>;</span><br></pre></td></tr></table></figure></p>
+<p>可以简写为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x,y,z=<span class="number">3</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用-代替"><a href="#使用-代替" class="headerlink" title="使用 === 代替 =="></a>使用 === 代替 ==</h2><p>==（或者!=）做对比的时候会将进行对比的两者转换到同一类型再比较。===（或者!==）则不会，他会将进行对比的两者做类型对比和值对比，相对于 == ，=== 的对比会更加严谨。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">10</span>] == <span class="number">10</span> <span class="comment">// true</span></span><br><span class="line">[<span class="number">10</span>] === <span class="number">10</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">"10"</span> == <span class="number">10</span> <span class="comment">// true</span></span><br><span class="line"><span class="string">"10"</span> === <span class="number">10</span> <span class="comment">// false</span></span><br><span class="line">[] == <span class="number">0</span> <span class="comment">// true</span></span><br><span class="line">[] === <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">""</span> == <span class="literal">false</span> <span class="comment">// true 但是 true == "a" 是false</span></span><br><span class="line"><span class="string">""</span> === <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h2><p>在使用 if 进行基本判断时，可以省略赋值运算符。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag===<span class="literal">true</span>)</span><br></pre></td></tr></table></figure></p>
+<p>可以简写为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag)</span><br></pre></td></tr></table></figure></p>
+<h2 id="十进制数"><a href="#十进制数" class="headerlink" title="十进制数"></a>十进制数</h2><p>可以使用科学计数法来代替较大的数据，如可以将 10000000 简写为 1e7。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i=<span class="number">10000000</span>;</span><br></pre></td></tr></table></figure></p>
+<p>可以简写为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i=<span class="number">1e7</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="模版字符串（ES5以下不支持）"><a href="#模版字符串（ES5以下不支持）" class="headerlink" title="模版字符串（ES5以下不支持）"></a>模版字符串（ES5以下不支持）</h2><p>传统的JavaScript语言，输出模板通常是这样写的，字符串拼接很让人头疼，也很容易出错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#result'</span>).append(</span><br><span class="line">  <span class="string">'There are &lt;b&gt;'</span> + basket.count + <span class="string">'&lt;/b&gt; '</span> +</span><br><span class="line">  <span class="string">'items in your basket, '</span> +</span><br><span class="line">  <span class="string">'&lt;em&gt;'</span> + basket.onSale +</span><br><span class="line">  <span class="string">'&lt;/em&gt; are on sale!'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>ES6引入了模板字符串解决这个问题<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#result'</span>).append(<span class="string">`</span></span><br><span class="line"><span class="string">  There are &lt;b&gt;<span class="subst">$&#123;basket.count&#125;</span>&lt;/b&gt; items</span></span><br><span class="line"><span class="string">   in your basket, &lt;em&gt;<span class="subst">$&#123;basket.onSale&#125;</span>&lt;/em&gt;</span></span><br><span class="line"><span class="string">  are on sale!</span></span><br><span class="line"><span class="string">`</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="转换数值的更加的方法"><a href="#转换数值的更加的方法" class="headerlink" title="转换数值的更加的方法"></a>转换数值的更加的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i =<span class="string">"1234"</span></span><br><span class="line">i = + str; <span class="comment">// i=1234</span></span><br></pre></td></tr></table></figure>
+<h2 id="清空一个数组"><a href="#清空一个数组" class="headerlink" title="清空一个数组"></a>清空一个数组</h2><p>你定义一个数组，并希望清空它的内容。通常，你会这样做：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">empty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//清空数组</span></span><br><span class="line">    list = [];</span><br><span class="line">&#125;</span><br><span class="line">empty();</span><br></pre></td></tr></table></figure></p>
+<p>但是还有一种更高性能的方法。<br>你可以使用这些代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">empty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//清空数组</span></span><br><span class="line">    list.length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">empty();</span><br></pre></td></tr></table></figure></p>
+<p>· list =[] 将一个变量指定个引用到那个数组，而其他引用都不受影响。这意味着，对于先前数组的内容的引用仍然保留在内存中，从而导致内存泄漏。<br>· list.length = 0 删除数组内的所有东西，这不需要引用任何其他的东西<br>然而，如果你有一个copy的数组（A和copy-A），如果你使用list.length = 0 删除其内容，副本也会失去它的内容。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> bar = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> foo2 = foo;</span><br><span class="line"><span class="keyword">var</span> bar2 = bar;</span><br><span class="line">foo = [];</span><br><span class="line">bar.length = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo, bar, foo2, bar2);</span><br><span class="line"><span class="comment">//[] [] [1, 2, 3] []</span></span><br></pre></td></tr></table></figure></p>
+<p>StackOverflow上的更多详情：difference-between-array-length-0-and-array</p>
+<h2 id="对数组排序进行”洗牌”-随机排序"><a href="#对数组排序进行”洗牌”-随机排序" class="headerlink" title="对数组排序进行”洗牌”(随机排序)"></a>对数组排序进行”洗牌”(随机排序)</h2><p>这段代码在这里使用Fisher Yates洗牌算法给一个指定的数组进行洗牌(随机排序)。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> m = array.length, i;</span><br><span class="line">    <span class="comment">// 如果还有剩余的需要打乱的元素...</span></span><br><span class="line">    <span class="keyword">while</span> (m) &#123;</span><br><span class="line">        <span class="comment">// 选择一个剩余的元素</span></span><br><span class="line">        i = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * m--);</span><br><span class="line">        <span class="comment">// 和当前元素交换</span></span><br><span class="line">        [array[i],array[m]]=[array[m],array[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>案例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(shuffle([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>]));</span><br><span class="line"><span class="comment">//[2, 3, 5, 4, 1, 6, 11, 9, 7, 8, 10]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="在数组插入一个元素"><a href="#在数组插入一个元素" class="headerlink" title="在数组插入一个元素"></a>在数组插入一个元素</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">arr.push(<span class="number">6</span>); <span class="comment">// [1, 2, 4, 5, 6]</span></span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// [0, 1, 2, 4, 5, 6]</span></span><br><span class="line">arr.splice(<span class="number">3</span>, <span class="number">0</span>, <span class="number">3</span>); <span class="comment">// [0, 1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符排序"><a href="#字符排序" class="headerlink" title="字符排序"></a>字符排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'Shanghai'</span>, <span class="string">'New York'</span>, <span class="string">'Mumbai'</span>, <span class="string">'Buenos Aires'</span>].sort();</span><br><span class="line"><span class="comment">// ["Buenos Aires", "Mumbai", "New York", "Shanghai"]</span></span><br></pre></td></tr></table></figure>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = arr.length, j;</span><br><span class="line">    <span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                [arr[j],arr[j + <span class="number">1</span>]]=[arr[j+<span class="number">1</span>],arr[j]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="undefined-和-null-的不同"><a href="#undefined-和-null-的不同" class="headerlink" title="undefined 和 null 的不同"></a>undefined 和 null 的不同</h2><ul>
+<li>undefined指的是一个变量未被声明，或者一个变量被声明但未赋值</li>
+<li>null是指一个特定的值，即”没有值”</li>
+<li>JavaScript给未赋值的变量默认定义为undefined</li>
+<li>JavaScript不会给未赋值的变量设置null值，它被程序员用来表示一个无价值的值</li>
+<li>undefined在json格式数据中是无效的，而null有效</li>
+<li>undefined 类型是 undefined</li>
+<li>null类似是object.为什么呢？</li>
+<li>两者都是原始值</li>
+<li>两者都被认为false(Boolean(undefined) // false, Boolean(null) // false)。</li>
+<li>辨认变量是不是undefined<br>typeof variable === “undefined” </li>
+<li>检查变量是不是null<br>variable === “null”<br>从值考虑他们是相等的，但是从类型和值共同考虑他们是不相等的<br>null == undefined // true<br>null === undefined // false <h2 id="严格模式”use-strict”"><a href="#严格模式”use-strict”" class="headerlink" title="严格模式”use strict”"></a>严格模式”use strict”</h2>严格模式的JavaScript让开发人员更加安全的编写JavaScript。<br>默认情况下，JavaScript允许开发者懒惰，例如，我们在第一次声明变量的时候可以不用var，虽然这可能看起来像一个没有经验的开发人员，同时这也是很多错误的根源，变量名拼写错误或意外地将它提到了外部作用域。<br>程序员喜欢让电脑为我们做些无聊的事，检查一些我们工作的错误。”use strict”指令我们做这些，将我们的错误转换成JavaScript的错误。<br>我们把这个指令可以通过添加在一个js文件的顶部：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 整个script文件都将是严格模式语法</span></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> v = <span class="string">"Hi! I'm a strict mode script!"</span>;</span><br><span class="line">或者在函数内：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 函数范围内的严格模式语法</span></span><br><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nested</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"And so am I!"</span>; &#125;</span><br><span class="line"><span class="keyword">return</span> <span class="string">"Hi! I'm a strict mode function! "</span> + nested();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"I'm not strict."</span>; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在包含这个指令的JavaScript文件或者函数内，我们将一些较大的JavaScript项目中的不良行为直接在JavaScript引擎执行中禁止了。在其他情况中，严格模式改变以下的行为：</p>
+<ul>
+<li>变量只有在前面 var 声明了才能用</li>
+<li>试图写入只读属性产生的误差</li>
+<li>必须用 new 关键字调用构造函数</li>
+<li>this 不会默认指向全局对象</li>
+<li>非常有限的使用eval()</li>
+<li>保护保留字符或未来保留字符不被作为变量名使用<br>严格模式在新项目中是很有好处的，但是在大多数地方没使用到它的老项目里使用它是非常具有挑战性的。当你把多个文件合并到一个文件时，它也是个问题，就像可能导致整个文件都在严格模式下执行。<br>它不是一个声明，只是一个字面量，早期版本的浏览器会忽略它。严格模式支持：</li>
+<li>IE 10+</li>
+<li>FF 4+</li>
+<li>Chrome 13+</li>
+<li>Safari 5.1+</li>
+<li>Opera 12+<h2 id="检查一个对象是否有属性"><a href="#检查一个对象是否有属性" class="headerlink" title="检查一个对象是否有属性"></a>检查一个对象是否有属性</h2>当你要检查一个对象是否存在某个属性时，你可能会这样做 ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;<span class="attr">name</span>: <span class="string">'@tips_js'</span>&#125;;</span><br><span class="line"><span class="keyword">if</span> (myObject.name) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这是可以的，但你必须知道这个还有两原生的方式，in operator 和 object.hasownproperty，每个对象是对象，既可用方法。每个object都继承自Object，这两个方法都可用。<br>两个方法的一些不同点：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;<span class="attr">name</span>: <span class="string">'@tips_js'</span>&#125;;</span><br><span class="line">myObject.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// true</span></span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> myObject; <span class="comment">// true</span></span><br><span class="line">myObject.hasOwnProperty(<span class="string">'valueOf'</span>); <span class="comment">// false, valueOf 是从原型链继承的</span></span><br><span class="line"><span class="string">'valueOf'</span> <span class="keyword">in</span> myObject; <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>他们之间的不同在于检查的性质，换句话说，当该对象本身有查找的属性时hasOwnProperty返回yrue，然而，in operator不区分属性创建的对象和属性继承的原型链。<br>这里有另外一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFunc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'@tips_js'</span>;</span><br><span class="line">&#125;;</span><br><span class="line">myFunc.prototype.age = <span class="string">'10 days'</span>;</span><br><span class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> myFunc();</span><br><span class="line">user.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// true</span></span><br><span class="line">user.hasOwnProperty(<span class="string">'age'</span>); <span class="comment">// false, 因为age是原型链上的</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="ES6中参数处理"><a href="#ES6中参数处理" class="headerlink" title="ES6中参数处理"></a>ES6中参数处理</h2><p>在许多编程语言中，函数的参数是默认的，而开发人员必须显式定义一个参数是可选的。在JavaScript中的每个参数是可选的，但我们可以这一行为而不让一个函数利用ES6的默认值作为参数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _err = <span class="function"><span class="keyword">function</span>(<span class="params"> message </span>)</span>&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>( message );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> getSum = <span class="function">(<span class="params">a = _err(<span class="string">'a is not defined'</span></span>), <span class="params">b</span> = <span class="params">_err</span>(<span class="params"><span class="string">'b is not defined'</span></span>)) =&gt;</span> a + b</span><br><span class="line">getSum( <span class="number">10</span> ) <span class="comment">// throws Error, b is not defined</span></span><br><span class="line">getSum( <span class="literal">undefined</span>, <span class="number">10</span> ) <span class="comment">// throws Error, a is not defined</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>_err是立即抛出一个错误的函数。如果没有一个参数作为值，默认值是会被使用，_err将被调用，将抛出错误。你可以在Mozilla开发者网络看到的更多默认参数的例子。</p>
+</blockquote>
+<h2 id="测量一个JavaScript代码块性能的技巧"><a href="#测量一个JavaScript代码块性能的技巧" class="headerlink" title="测量一个JavaScript代码块性能的技巧"></a>测量一个JavaScript代码块性能的技巧</h2><p>快速测量一个JavaScript块的性能，我们可以使用控制台的功能像console.time(label)和console.timeEnd(label)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.time(<span class="string">"Array initialize"</span>);</span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1000</span>),</span><br><span class="line">len = arr.length,</span><br><span class="line">i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">arr[i] = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">"Array initialize"</span>); <span class="comment">// 输出: Array initialize: 0.451904296875ms</span></span><br></pre></td></tr></table></figure></p>
+<p>更多信息Console object, JavaScript benchmarking<br>demo：jsfiddle-codepen (在浏览器控制台输出)</p>
+<h2 id="arrow-函数-ES6"><a href="#arrow-函数-ES6" class="headerlink" title="arrow 函数(ES6)"></a>arrow 函数(ES6)</h2><p>介绍下ES6里的新功能，arrow函数可能会是个很方便的工具，用更少行数写更多代码。他的名字来源于他的语法，=&gt;和小箭头-&gt;比就像一个“胖胖的箭头”。可能有些人知道，这种函数类型和其他静态语言如lambda表达式的匿名函数。它被称为匿名，因为这些箭头函数没有一个描述性的函数名。<br>那么这样有什么好处呢？<br>语法：更少的LOC，不用一次次的键入函数关键字。<br>语义：从上下文中捕捉关键字this。<br>简单语法案例：<br>看看下面的两段代码片段，他们做的是一样的工作。你能很快的理解arrow函数的功能。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arrow函数的日常语法</span></span><br><span class="line">param =&gt; expression</span><br><span class="line"><span class="comment">// 可能也会写在括号中</span></span><br><span class="line"><span class="comment">// 括号是多参数要求</span></span><br><span class="line">(param1 [, param2]) =&gt; expression</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用日常函数</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> arrFunc = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用arrow函数</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> arrFunc = arr.map(<span class="function">(<span class="params">x</span>) =&gt;</span> x*x);</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></table></figure></p>
+<p>正如你所看到的，这个例子中的arrow函数可以节省你输入括号内参数和返回关键字的时间。建议把圆括号内的参数输入，如 (x,y) =&gt; x+y 。在不同的使用情况下，它只是用来应对遗忘的一种方式。但是上面的代码也会这样执行：x =&gt; x*x.目前看来，这些仅仅是导致更少的LOC和更好的可读性的句法改进。<br>this 绑定<br>还有一个更好的理由使用arrow函数。那就是在会出现this问题的背景下。使用arrow函数，你就不用担心.bind(this)和 that=this 了。因为arrow函数会从上下文中找到this。<br>看下面的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局定义this.i</span></span><br><span class="line"><span class="keyword">this</span>.i = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> counterA = <span class="keyword">new</span> CounterA();</span><br><span class="line"><span class="keyword">var</span> counterB = <span class="keyword">new</span> CounterB();</span><br><span class="line"><span class="keyword">var</span> counterC = <span class="keyword">new</span> CounterC();</span><br><span class="line"><span class="keyword">var</span> counterD = <span class="keyword">new</span> CounterD();</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 不好的示例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CounterA</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// CounterA's `this` 实例 (!! 忽略这里)</span></span><br><span class="line">    <span class="keyword">this</span>.i = <span class="number">0</span>;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// `this` 指全局对象，而不是 CounterA's `this`</span></span><br><span class="line">        <span class="comment">// 因此，开始计数与100，而不是0 (本地的 this.i)</span></span><br><span class="line">        <span class="keyword">this</span>.i++;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"counterA"</span>).innerHTML = <span class="keyword">this</span>.i;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 手动绑定 that = this</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CounterB</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        that.i++;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"counterB"</span>).innerHTML = that.i;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用 .bind(this)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CounterC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.i = <span class="number">0</span>;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.i++;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"counterC"</span>).innerHTML = <span class="keyword">this</span>.i;</span><br><span class="line">    &#125;.bind(<span class="keyword">this</span>), <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用 arrow函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CounterD</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.i = <span class="number">0</span>;</span><br><span class="line">    setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.i++;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"counterD"</span>).innerHTML = <span class="keyword">this</span>.i;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用更简单的类似indexOf的包含判断方式"><a href="#使用更简单的类似indexOf的包含判断方式" class="headerlink" title="使用更简单的类似indexOf的包含判断方式"></a>使用更简单的类似indexOf的包含判断方式</h2><p>原生的JavaScript没有contains方法。对检查字符串或字符串数组项中是否存在某值，你可以这样做：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someText = <span class="string">'JavaScript rules'</span>;</span><br><span class="line"><span class="keyword">if</span> (someText.indexOf(<span class="string">'JavaScript'</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">if</span> (someText.indexOf(<span class="string">'JavaScript'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是我们再看看这些ExpressJs代码片段。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// examples/mvc/lib/boot.js</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line"><span class="comment">// "reserved" exports</span></span><br><span class="line"><span class="keyword">if</span> (~[<span class="string">'name'</span>, <span class="string">'prefix'</span>, <span class="string">'engine'</span>, <span class="string">'before'</span>].indexOf(key)) <span class="keyword">continue</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// examples/lib/utils.js</span></span><br><span class="line">exports.normalizeType = <span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> ~type.indexOf(<span class="string">'/'</span>)</span><br><span class="line">? acceptParams(type)</span><br><span class="line">: &#123; <span class="attr">value</span>: mime.lookup(type), <span class="attr">params</span>: &#123;&#125; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// examples/web-service/index.js</span></span><br><span class="line"><span class="comment">// key is invalid</span></span><br><span class="line"><span class="keyword">if</span> (!~apiKeys.indexOf(key)) <span class="keyword">return</span> next(error(<span class="number">401</span>, <span class="string">'invalid api key'</span>));</span><br></pre></td></tr></table></figure></p>
+<p>问题是~位运算符。”运算符执行操作这样的二进制表达式，但他们返回标准的JavaScript的数值.”<br>他们将-1转换为0，而0在JavaScript中又是false。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someText = <span class="string">'text'</span>;</span><br><span class="line">!!~someText.indexOf(<span class="string">'tex'</span>); <span class="comment">// someText 包含 "tex" - true</span></span><br><span class="line">!~someText.indexOf(<span class="string">'tex'</span>); <span class="comment">// someText 不包含 "tex" - false</span></span><br><span class="line">~someText.indexOf(<span class="string">'asd'</span>); <span class="comment">// someText 不包含 "asd" - false</span></span><br><span class="line">~someText.indexOf(<span class="string">'ext'</span>); <span class="comment">// someText 包含 "ext" - true</span></span><br><span class="line"><span class="built_in">String</span>.prototype.includes()</span><br></pre></td></tr></table></figure></p>
+<p>在ES6(ES 2015)中介绍了includes()方法可以用来确定是否一个字符串包含另一个字符串：<br>‘something’.includes(‘thing’); // true<br>在ECMAScript 2016 (ES7)中，甚至数组都可以这样操作，如indexOf：<br>!!~[1, 2, 3].indexOf(1); // true<br>[1, 2, 3].includes(1); // true<br>不幸的是，这只是在Chrome，Firefox，Safari 9或以上的浏览器中被支持。</p>
+<h2 id="给回调函数传递参数"><a href="#给回调函数传递参数" class="headerlink" title="给回调函数传递参数"></a>给回调函数传递参数</h2><p>在默认情况下，你无法将参数传给回调函数，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hi human'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'someelem'</span>).addEventListener(<span class="string">'click'</span>, callback);</span><br></pre></td></tr></table></figure></p>
+<p>你可以采取JavaScript闭包的优点来给回调函数传参，案例如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sum = '</span>, (a+b));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>, y = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'someelem'</span>).addEventListener(<span class="string">'click'</span>, callback(x, y));</span><br></pre></td></tr></table></figure></p>
+<p>什么是闭包呢？闭包是指一个针对独立的(自由)变量的函数。换句话说，闭包中定义的函数会记住它被创建的环境。了解更多请参阅MDN所以这种方式当被调用的时候，参数X/Y存在于回调函数的作用域内。<br>另一种方法是使用绑定方法。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> alertText = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">alert(text);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'someelem'</span>).addEventListener(<span class="string">'click'</span>, alertText.bind(<span class="keyword">this</span>, <span class="string">'hello'</span>));</span><br></pre></td></tr></table></figure></p>
+<p>两种方法在性能上有一些略微区别，详情参阅jsperf</p>
+<h2 id="Node-js-让module在没被require的时候运行"><a href="#Node-js-让module在没被require的时候运行" class="headerlink" title="Node.js:让module在没被require的时候运行"></a>Node.js:让module在没被require的时候运行</h2><p>在node里，你可以根据代码是运行了require(‘./something.js’)还是node something.js，来告诉你的程序去做两件不同的事情。如果你想与你的一个独立的模块进行交互，这是很有用的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">module</span>.parent) &#123;</span><br><span class="line">    <span class="comment">// 运行 `node something.js`</span></span><br><span class="line">    app.listen(<span class="number">8088</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app listening on port 8088'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 `require('/.something.js')`</span></span><br><span class="line">    <span class="built_in">module</span>.exports = app;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更多信息，请看the documentation for modules</p>
+<h2 id="更快的四舍五入"><a href="#更快的四舍五入" class="headerlink" title="更快的四舍五入"></a>更快的四舍五入</h2><p>今天的技巧是关于性能。见到过双波浪线”~~”操作符吗？它有时也被称为double NOT运算符。你可以更快的使用它来作为Math.floor()替代品。为什么呢？<br>单位移~将32位转换输入-(输入+1)，因此双位移将输入转换为-(-(输入+1))，这是个趋于0的伟大的工具。对于输入的数字，它将模仿Math.ceil()取负值和Math.floor()取正值。如果执行失败，则返回0，这可能在用来代替Math.floor()失败时返回一个NaN的时候发挥作用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单位移</span></span><br><span class="line"><span class="built_in">console</span>.log(~<span class="number">1337</span>) <span class="comment">// -1338</span></span><br><span class="line"><span class="comment">// 双位移</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">47.11</span>) <span class="comment">// -&gt; 47</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">-12.88</span>) <span class="comment">// -&gt; -12</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">1.9999</span>) <span class="comment">// -&gt; 1</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="number">3</span>) <span class="comment">// -&gt; 3</span></span><br><span class="line"><span class="comment">//失败的情况</span></span><br><span class="line"><span class="built_in">console</span>.log(~~[]) <span class="comment">// -&gt; 0 </span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="literal">NaN</span>) <span class="comment">// -&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(~~<span class="literal">null</span>) <span class="comment">// -&gt; 0</span></span><br><span class="line"><span class="comment">//大于32位整数则失败</span></span><br><span class="line"><span class="built_in">console</span>.log(~~(<span class="number">2147483647</span> + <span class="number">1</span>) === (<span class="number">2147483647</span> + <span class="number">1</span>)) <span class="comment">// -&gt; 0</span></span><br></pre></td></tr></table></figure></p>
+<p>虽然~~可能有更好的表现，为了可读性，请使用Math.floor()。</p>
+<h2 id="字符串安全连接"><a href="#字符串安全连接" class="headerlink" title="字符串安全连接"></a>字符串安全连接</h2><p>假设你有一些类型未知的变量，你想将它们连接起来。可以肯定的是，算法操作不会在级联时应用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> one = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> two = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> three = <span class="string">'3'</span>;</span><br><span class="line"><span class="keyword">var</span> result = one + two + three; <span class="comment">//"33" 而不是 "123"</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="string">''</span>+one + two + three; <span class="comment">//"123"</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="string">''</span>.concat(one, two, three); <span class="comment">//"123"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="返回对象的函数能够用于链式操作"><a href="#返回对象的函数能够用于链式操作" class="headerlink" title="返回对象的函数能够用于链式操作"></a>返回对象的函数能够用于链式操作</h2><p>当创建面向对象的JavaScript对象的function时，函数返回一个对象将能够让函数可链式的写在一起来执行。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Hello my name is: "</span>, <span class="keyword">this</span>.name);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.changeName = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"John"</span>);</span><br><span class="line">person.sayName().changeName(<span class="string">"Timmy"</span>).sayName();</span><br><span class="line"><span class="comment">//Hello my name is: John</span></span><br><span class="line"><span class="comment">//Hello my name is: Timmy</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/tips/" rel="tag"># tips</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/20/hexo/create-hexo/" rel="next" title="Hexo搭建GitHub博客">
+                <i class="fa fa-chevron-left"></i> Hexo搭建GitHub博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/22/hexo/hexo-config/" rel="prev" title="hexo配置">
+                hexo配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDMzMy8xMDg3MA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">肖晨刚</p>
+              <p class="site-description motion-element" itemprop="description">一个初级程序员的修仙之旅</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-开发小技巧"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 开发小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#三目运算符"><span class="nav-number">1.1.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环语句"><span class="nav-number">1.2.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明变量"><span class="nav-number">1.3.</span> <span class="nav-text">声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-代替"><span class="nav-number">1.4.</span> <span class="nav-text">使用 === 代替 ==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-语句"><span class="nav-number">1.5.</span> <span class="nav-text">if 语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十进制数"><span class="nav-number">1.6.</span> <span class="nav-text">十进制数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版字符串（ES5以下不支持）"><span class="nav-number">1.7.</span> <span class="nav-text">模版字符串（ES5以下不支持）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换数值的更加的方法"><span class="nav-number">1.8.</span> <span class="nav-text">转换数值的更加的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清空一个数组"><span class="nav-number">1.9.</span> <span class="nav-text">清空一个数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数组排序进行”洗牌”-随机排序"><span class="nav-number">1.10.</span> <span class="nav-text">对数组排序进行”洗牌”(随机排序)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在数组插入一个元素"><span class="nav-number">1.11.</span> <span class="nav-text">在数组插入一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符排序"><span class="nav-number">1.12.</span> <span class="nav-text">字符排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.13.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined-和-null-的不同"><span class="nav-number">1.14.</span> <span class="nav-text">undefined 和 null 的不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#严格模式”use-strict”"><span class="nav-number">1.15.</span> <span class="nav-text">严格模式”use strict”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查一个对象是否有属性"><span class="nav-number">1.16.</span> <span class="nav-text">检查一个对象是否有属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6中参数处理"><span class="nav-number">1.17.</span> <span class="nav-text">ES6中参数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测量一个JavaScript代码块性能的技巧"><span class="nav-number">1.18.</span> <span class="nav-text">测量一个JavaScript代码块性能的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arrow-函数-ES6"><span class="nav-number">1.19.</span> <span class="nav-text">arrow 函数(ES6)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用更简单的类似indexOf的包含判断方式"><span class="nav-number">1.20.</span> <span class="nav-text">使用更简单的类似indexOf的包含判断方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给回调函数传递参数"><span class="nav-number">1.21.</span> <span class="nav-text">给回调函数传递参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-让module在没被require的时候运行"><span class="nav-number">1.22.</span> <span class="nav-text">Node.js:让module在没被require的时候运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更快的四舍五入"><span class="nav-number">1.23.</span> <span class="nav-text">更快的四舍五入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串安全连接"><span class="nav-number">1.24.</span> <span class="nav-text">字符串安全连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回对象的函数能够用于链式操作"><span class="nav-number">1.25.</span> <span class="nav-text">返回对象的函数能够用于链式操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">肖晨刚</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.4"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
